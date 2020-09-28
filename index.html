@@ -15,7 +15,7 @@ body {
 }
 
 /* Video Background */
-#myVideo {
+.video {
   position: fixed;
   right: 0;
   bottom: 0;
@@ -95,6 +95,13 @@ button {
   padding: 20px;
 }
 
+.icon{
+	width: 35px;
+	height: 35px;
+	background-color: black;
+	margin-bottom: 15px;
+}
+
 /* Animations */
 @keyframes slide_in {
   from {bottom: -50%;}
@@ -108,32 +115,37 @@ button {
 </head>
 <body>
 
-<video autoplay loop playsinline id="myVideo">
-  <source src="rain.mp4" type="video/mp4">
+<video loop id="video" class="video">
+  <source src="video.mp4" type="video/mp4">
   Your browser does not support HTML5 video.
 </video>
 
 <div class="side_bar_bottom">
-	<div class="button"></div>
-	<div class="button"></div>
-	<div class="button"></div> 
+	<div class="icon"></div>
+	<div class="icon"></div>
+	<div class="icon"></div> 
 </div>
 
 <div class="side_bar_top">
-	<div class="button"></div> 
+	<div class="icon" onclick="start()"></div> 
 </div>
 
 <div class="card" id="card" style="display: none">
   <div class="question">What song do you want to hear next?</div>
-  <button class="ripple" onclick="finishVote()">Option 1</butoon>
+  <button class="ripple" onclick="finishVote()">Option 1</button>
   <button class="ripple" onclick="finishVote()">Option 2</button>
   <button class="ripple" onclick="finishVote()">Option 3</button>
 </div>
 
 <script>
 var card = document.getElementById("card");
+var video = document.getElementById("video");
 
-setTimeout(startVote,1000);
+
+function start(){
+	video.play();
+	setTimeout(startVote,3000);
+}
 
 function startVote() {
 	card.style.display = "block";
