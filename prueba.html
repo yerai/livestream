@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+/* Video Background */
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Voting */
+.card{
+  position: fixed;
+  width: 100%;
+  height: 50%;
+  padding: 20px;
+  background-color: rgba(39,39,41,0.8);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+
+  backdrop-filter: blur(6px);
+  
+  animation-name: slide_in;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  animation-direction: normal;
+}
+
+/* Title */
+.question{
+	font-weight: 600;
+	font-size: 24px;
+	color:white;
+}
+
+/* Ripple effect */
+.ripple {
+  border-radius: 150px;
+  background-position: center;
+  transition: background 0.8s;
+}
+.ripple:hover {
+  background: #47a7f5 radial-gradient(circle, transparent 1%, #47a7f5 1%) center/15000%;
+}
+.ripple:active {
+  background-color: #6eb9f7;
+  background-size: 100%;
+  transition: background 0s;
+}
+
+/* Button style */
+button {
+  border: 3px solid white;
+  border-radius: 150px;
+  padding: 12px 18px;
+  font-size: 16px;
+  cursor: pointer;
+  color: white;
+  background-color: transparent;
+  outline: none;
+  width: 100%;
+  height: 20%;
+  margin-top: 5%;
+}
+
+/* Side bars */
+.side_bar_bottom{
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 75px;
+  padding: 20px;
+}
+
+.side_bar_top{
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 75px;
+  padding: 20px;
+}
+
+/* Animations */
+@keyframes slide_in {
+  from {bottom: -50%;}
+  to {bottom: 0%;}
+}
+
+/* Fonts */
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</style>
+
+</head>
+<body>
+
+<video autoplay loop id="myVideo">
+  <source src="rain.mp4" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
+
+<div class="side_bar_bottom">
+	<div class="button"></div>
+	<div class="button"></div>
+	<div class="button"></div> 
+</div>
+
+<div class="side_bar_top">
+	<div class="button"></div> 
+</div>
+
+<div class="card" id="card" style="display: none">
+  <div class="question">What song do you want to hear next?</div>
+  <button class="ripple" onclick="finishVote()">Option 1</butoon>
+  <button class="ripple" onclick="finishVote()">Option 2</button>
+  <button class="ripple" onclick="finishVote()">Option 3</button>
+</div>
+
+<script>
+var card = document.getElementById("card");
+
+setTimeout(startVote,1000);
+
+function startVote() {
+	card.style.display = "block";
+}
+
+/*function finishVote() {
+	card.style.animationDirection="reverse";
+	card.classList.remove("card");
+	void card.offsetWidth;
+	card.classList.add("card");
+}*/
+
+</script>
+
+</body>
+</html>
