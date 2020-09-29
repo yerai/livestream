@@ -20,7 +20,7 @@ body {
   position: fixed;
   right: 0;
   bottom: 0;
-  width: 100%;
+  height: 100%;
 }
 
 /* Voting */
@@ -54,16 +54,17 @@ body {
   display: flex;
   justify-content: left;
   align-items: center;
-  border: 2px solid white;
-  border-radius: 5px;
-  padding: 10px;
+  /*border: 2px solid white;*/
+  border-radius: 18px;
+  padding: 15px;
   margin-bottom: 15px;
   background-color: transparent;
+  backdrop-filter: blur(1px);
 }
 
 .option_img{
   border-radius: 5px;
-  margin-right: 10px;
+  margin-right: 15px;
   width: 60px;
   height: 60px;
 }
@@ -78,6 +79,25 @@ body {
 	font-weight: 600;
 	font-size: 25px;
 	display: none;
+}
+
+.close{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*border: 2px solid white;
+  border-radius: 150px;*/
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: transparent;
+  display: none;
+}
+
+.close-text{
+  font-weight: 600;
+  text-align: center;
+  color: white;
 }
 
 /* Side bars */
@@ -119,7 +139,7 @@ body {
 
 /* Animations */
 @keyframes slide_in {
-  from {bottom: -50%;}
+  from {bottom: -60%;}
   to {bottom: 0%;}
 }
 
@@ -177,7 +197,11 @@ body {
   	<div class="percentaje">20%</div>
   </div>
 
-  <div class="timer">Voting ends in <span id="time">60</span> seconds!</div>
+  <div class="timer" id="voteText">Voting ends in <span id="time">60</span> seconds!</div>
+
+  <div class="close" id="close" onclick="finishVote()">
+  	<div class="close-text">CLOSE</div>
+  </div>
 
 </div>
 
@@ -245,8 +269,11 @@ function startTimer(duration, display) {
 /* Display Results */
 function showResults(){
 	unselectSongs();
+	document.getElementById('voteText').style.display = "none";
+	document.getElementById('close').style.display = "block";
 	var winner = document.getElementById('option_1');
-	winner.style.backgroundColor = "blue";
+	winner.style.backgroundColor = "#0D67E5";
+	winner.style.borderColor = "#0D67E5";
 	var items = document.getElementsByClassName("percentaje");
 	for (i = 0; i < items.length; i++) {
 	    items[i].style.display = "block";
