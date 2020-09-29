@@ -41,41 +41,34 @@ body {
   animation-direction: normal;
 }
 
-/* Title */
 .question{
 	font-weight: 600;
 	font-size: 24px;
 	color:white;
+	margin-bottom: 30px;
 }
 
-/* Ripple effect */
-.ripple {
-  border-radius: 150px;
-  background-position: center;
-  transition: background 0.8s;
-}
-.ripple:hover {
-  background: #47a7f5 radial-gradient(circle, transparent 1%, #47a7f5 1%) center/15000%;
-}
-.ripple:active {
-  background-color: #6eb9f7;
-  background-size: 100%;
-  transition: background 0s;
-}
-
-/* Button style */
-button {
-  border: 3px solid white;
-  border-radius: 150px;
-  padding: 12px 18px;
-  font-size: 16px;
-  cursor: pointer;
-  color: white;
-  background-color: transparent;
-  outline: none;
+.option{
   width: 100%;
-  height: 20%;
-  margin-top: 5%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  border: 2px solid white;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: transparent;
+}
+
+.option_img{
+	border-radius: 5px;
+	margin-right: 10px;
+	width: 60px;
+	height: 60px;
+}
+
+.option_text{
+	color:white;
 }
 
 /* Side bars */
@@ -85,6 +78,10 @@ button {
   bottom: 0;
   width: 75px;
   padding: 20px;
+  background-color: rgba(39,39,41,0.8);
+  backdrop-filter: blur(6px);
+  margin: 10px;
+  border-radius: 150px;
 }
 
 .side_bar_top{
@@ -93,13 +90,16 @@ button {
   top: 0;
   width: 75px;
   padding: 20px;
+  margin: 10px;
 }
 
 .icon{
 	width: 35px;
 	height: 35px;
-	background-color: black;
-	margin-bottom: 15px;
+	margin-bottom: 5px;
+}
+.subtitle{
+	color:white;
 }
 
 /* Animations */
@@ -121,20 +121,41 @@ button {
 </video>
 
 <div class="side_bar_bottom">
-	<div class="icon"></div>
-	<div class="icon"></div>
-	<div class="icon"></div> 
+	<img class="icon" src="./img/viewers.png" alt="Like Livestream">
+	<div class="subtitle" style="margin-bottom:30px;">203</div>
+	<img class="icon" src="./img/like.png" onclick="like()" alt="Like Livestream">
+	<div class="subtitle">150</div>
 </div>
 
 <div class="side_bar_top">
-	<div class="icon" onclick="start()"></div> 
+	<img onclick="start()" src="./img/exit.png" alt="Exit Livestream" width="35px" height="35px">
 </div>
 
 <div class="card" id="card" style="display: none">
   <div class="question">What song do you want to hear next?</div>
-  <button class="ripple" onclick="finishVote()">Option 1</button>
-  <button class="ripple" onclick="finishVote()">Option 2</button>
-  <button class="ripple" onclick="finishVote()">Option 3</button>
+  <div class="option" id="option_1">
+  	<img class="option_img" src="./img/physical.jpg" alt="Physical Album Art">
+  	<div class="option_text">
+  		<div style="font-weight: 600;">Physical</div>
+  		<div style="opacity: 80;">Dua Lipa</div>
+  	</div>
+  </div>
+
+  <div class="option" id="option_2">
+  	<img class="option_img" src="./img/physical.jpg" alt="Physical Album Art">
+  	<div class="option_text">
+  		<div style="font-weight: 600;">Physical</div>
+  		<div style="opacity: 80;">Dua Lipa</div>
+  	</div>
+  </div>
+
+  <div class="option" id="option_3">
+  	<img class="option_img" src="./img/physical.jpg" alt="Physical Album Art">
+  	<div class="option_text">
+  		<div style="font-weight: 600;">Physical</div>
+  		<div style="opacity: 80;">Dua Lipa</div>
+  	</div>
+  </div>
 </div>
 
 <script>
@@ -151,12 +172,32 @@ function startVote() {
 	card.style.display = "block";
 }
 
-/*function finishVote() {
+document.getElementById('option_1').onclick = selectSong; 
+document.getElementById('option_2').onclick = selectSong; 
+document.getElementById('option_3').onclick = selectSong; 
+
+function selectSong(clicked){
+	unselectSongs();
+	var option = document.getElementById(this.id);
+	option.style.backgroundColor = "white";
+	option.children[1].style.color = "black";
+}
+
+function unselectSongs(){
+	for(i=1; i<4; i++){
+		var item = 'option_' + i;
+		var option = document.getElementById(item);
+		option.style.backgroundColor = "transparent";
+		option.children[1].style.color = "white";
+	}
+}
+
+function finishVote() {
 	card.style.animationDirection="reverse";
 	card.classList.remove("card");
 	void card.offsetWidth;
 	card.classList.add("card");
-}*/
+}
 
 </script>
 
