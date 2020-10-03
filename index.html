@@ -130,7 +130,6 @@ body {
 .subtitle{
 	color:white;
 }
-
 .timer{
 	color:white;
 	font-weight: 400;
@@ -150,19 +149,30 @@ body {
 </head>
 <body>
 
-<video playsinline loop id="video" class="video">
-  <source src="video.mp4" type="video/mp4">
+<video playsinline muted id="video1" class="video" style="display: none">
+  <source src="1.mp4" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
+
+<video playsinline muted id="video2" class="video" style="display: none">
+  <source src="2.mp4" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
+
+<video playsinline id="video3" class="video">
+  <source src="3.mp4" type="video/mp4">
   Your browser does not support HTML5 video.
 </video>
 
 <div class="side_bar_bottom">
 	<img class="icon" src="./img/viewers.png" alt="Like Livestream">
-	<div class="subtitle" style="margin-bottom:30px;">203</div>
-	<img class="icon" src="./img/like.png" onclick="like()" alt="Like Livestream">
-	<div class="subtitle">150</div>
+	<div class="subtitle" id="views" style="margin-bottom:30px;">203</div>
+	<img class="icon" id="heart" src="./img/like.png" onclick="like()" alt="Like Livestream">
+	<div class="subtitle" id="likes">150</div>
 </div>
 
-<img class="heart" src="./img/like.png" alt="Like Livestream"/>
+
+<img class="heart sidetoside-animate"src="./img/like.png" alt="Like Livestream">
 
 <div class="side_bar_top">
 	<img onclick="start()" src="./img/exit.png" alt="Exit Livestream" width="35px" height="35px">
@@ -171,19 +181,19 @@ body {
 <div class="card" id="card" style="display: none">
   <div class="question">What song do you want to hear next?</div>
   <div class="option" id="option_1">
-  	<img class="option_img" src="./img/physical.jpg" alt="Physical Album Art">
+  	<img class="option_img" src="./img/gaga.png" alt="Physical Album Art">
   	<div class="option_text">
-  		<div style="font-weight: 600;">Physical</div>
-  		<div style="opacity: 80;">Dua Lipa</div>
+  		<div style="font-weight: 600;">Stupid Love</div>
+  		<div style="opacity: 80;">Lady Gaga</div>
   	</div>
-  	<div class="percentaje">60%</div>
+  	<div class="percentaje">20%</div>
   </div>
 
   <div class="option" id="option_2">
-  	<img class="option_img" src="./img/physical.jpg" alt="Physical Album Art">
+  	<img class="option_img" src="./img/ed.png" alt="Physical Album Art">
   	<div class="option_text">
-  		<div style="font-weight: 600;">Physical</div>
-  		<div style="opacity: 80;">Dua Lipa</div>
+  		<div style="font-weight: 600;">Shape of You</div>
+  		<div style="opacity: 80;">Ed Sheeran</div>
   	</div>
   	<div class="percentaje">20%</div>
   </div>
@@ -205,14 +215,50 @@ body {
 
 </div>
 
+<script src="https://unpkg.com/floating.js"></script>
 <script>
 var card = document.getElementById("card");
-var video = document.getElementById("video");
+var video1 = document.getElementById("video1");
+var video2 = document.getElementById("video2");
+var video3 = document.getElementById("video3");
+
+var ending = '';
+var likes = parseInt(document.getElementById('likes').innerHTML,10);
 
 /* Start Video */
 function start(){
-	video.play();
+	video1.play();
+	video2.play();
+	video3.play();
+
 	setTimeout(startVote,60000);
+	setTimeout(changeVideo,90070);
+
+	addViewers(document.querySelector('#views'));
+	addLikes(document.querySelector('#likes'));
+}
+
+/* Change video */
+function changeVideo(){
+	if(ending =='option_1'){
+		// Stupid Love
+		video1.style.display = "block";
+		video1.muted = !video1.muted;
+
+		video3.muted = !video3.muted;
+		video3.style.display = "none";
+		
+	}else if(ending == 'option_2'){
+		// Shape of You
+		video2.style.display = "block";
+		video2.muted = !video2.muted;
+
+		video3.muted = !video3.muted;
+		video3.style.display = "none";
+
+	}else{
+		//Video Keeps playing --> Physical
+	}
 }
 
 /* Display card & Start Countdown */
@@ -231,6 +277,7 @@ function selectSong(clicked){
 	var option = document.getElementById(this.id);
 	option.style.backgroundColor = "white";
 	option.children[1].style.color = "black";
+	ending = this.id;
 }
 
 function unselectSongs(){
@@ -266,14 +313,56 @@ function startTimer(duration, display) {
     }, 1000);
 }
 
+/* Like */
+function like(){
+	document.getElementById('heart').src="./img/like2.png";
+	document.getElementById('likes').innerHTML = parseInt(document.getElementById('likes').innerHTML,10)+1;
+	showHearts();
+	setTimeout(showHearts,1000);
+	setTimeout(showHearts,2000);
+	setTimeout(restoreLike,3000);
+}
+
+function showHearts(){
+	floating({
+	    content: '<img src="./img/heart.svg">',
+	    number: 3,
+	    duration: 3,
+	    repeat: 1,
+	    size: [3,5]
+	  });
+}
+
+function restoreLike(){
+	document.getElementById('heart').src="./img/like.png";
+}
+/* Increase viewers */
+function addViewers(display) {
+	var views = 203;
+    var interval = setInterval(function () {
+    	views = views + Math.floor(Math.random() * 10) +1;
+        display.textContent = views;
+    }, 3000);
+}
+
+/* Increase likes */
+function addLikes (display) {
+	
+    var interval = setInterval(function () {
+    	likes = likes + Math.floor(Math.random() * 10) +1;
+        display.textContent = likes;
+    }, 4000);
+}
+
 /* Display Results */
 function showResults(){
 	unselectSongs();
 	document.getElementById('voteText').style.display = "none";
 	document.getElementById('close').style.display = "block";
-	var winner = document.getElementById('option_1');
+	var winner = document.getElementById(ending);
 	winner.style.backgroundColor = "#0D67E5";
 	winner.style.borderColor = "#0D67E5";
+	winner.children[2].innerHTML = "60%";
 	var items = document.getElementsByClassName("percentaje");
 	for (i = 0; i < items.length; i++) {
 	    items[i].style.display = "block";
