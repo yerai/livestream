@@ -3,7 +3,7 @@
 <head>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="viewport" content="width=device-width, initial-scale=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"> 
 <style>
 * {
   box-sizing: border-box;
@@ -14,6 +14,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 20px;
+  background-color: transparent;
 }
 
 /* Video Background */
@@ -61,7 +62,7 @@ body {
   padding: 15px;
   margin-bottom: 15px;
   background-color: rgba(39,39,41,0.8);
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(30px);
 }
 
 .option_img{
@@ -148,6 +149,7 @@ body {
 }
 .timer{
 	color:white;
+	font-size: 15px;
 	font-weight: 400;
 	text-align: center;
 	margin-top: 30px;
@@ -410,7 +412,7 @@ function finishVote() {
 	card.classList.remove("card");
 	void card.offsetWidth;
 	card.classList.add("card");
-	document.getElementById('bottom-bar').style.display = "block";
+	document.getElementById('bottom-bar').style.display = "flex";
 }
 
 /* Timer function */
