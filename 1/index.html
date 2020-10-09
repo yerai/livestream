@@ -205,7 +205,7 @@ body {
   height: 20%;
   border-radius: 10px;
   margin-bottom: 10px;
-  background-image: url('./img/liveevent.gif');
+  background-image: url('../img/liveevent.gif');
   background-size: cover;
 }
 
@@ -234,13 +234,13 @@ body {
 	<div class="live-name">Keyhead</div>
 	<div class="live-artist" style="margin-bottom: 40px;">Pop - 150 Viewers</div>
 	<div class="title">Upcoming Events</div>
-	<div class="livestreams" style="background-image: url('./img/event-2.jpg');"></div>
+	<div class="livestreams" style="background-image: url('../img/event-2.jpg');"></div>
 	<div class="live-name">Lisa Wonder</div>
 	<div class="live-artist" style="margin-bottom: 20px;">Jazz - 13th November</div>
-	<div class="livestreams" style="background-image: url('./img/event-3.jpg');"></div>
+	<div class="livestreams" style="background-image: url('../img/event-3.jpg');"></div>
 	<div class="live-name">Bananas Ten</div>
 	<div class="live-artist" style="margin-bottom: 20px;">Rock - 29th November</div>
-	<div class="livestreams" style="background-image: url('./img/event-4.jpg');"></div>
+	<div class="livestreams" style="background-image: url('../img/event-4.jpg');"></div>
 	<div class="live-name">Bananas Ten</div>
 	<div class="live-artist" style="margin-bottom: 40px;">Country - 4th December</div>
 	
@@ -248,29 +248,29 @@ body {
 
 
 <video playsinline muted id="video1" class="video" style="display: none">
-  <source src="1.mp4" type="video/mp4">
+  <source src="../1.mp4" type="video/mp4">
   Your browser does not support HTML5 video.
 </video>
 
 <video playsinline muted id="video2" class="video" style="display: none">
-  <source src="2.mp4" type="video/mp4">
+  <source src="../2.mp4" type="video/mp4">
   Your browser does not support HTML5 video.
 </video>
 
 <video playsinline id="video3" class="video" style="display: none">
-  <source src="3.mp4" type="video/mp4">
+  <source src="../3.mp4" type="video/mp4">
   Your browser does not support HTML5 video.
 </video>
 
 <div class="side_bar_bottom" id="bottom-bar" style="display: none">
-	<img class="icon" id="heart" src="./img/like.png" onclick="like()" alt="Like Livestream">
+	<img class="icon" id="heart" src="../img/like.png" onclick="like()" alt="Like Livestream">
 	<div class="subtitle" id="likes">150</div>
 </div>
 
 <div class="side_bar_top" id="top-bar" style="display: none">
-	<img src="./img/Back.png" style="width: 25px; height: 25px;">
+	<img src="../img/Back.png" style="width: 25px; height: 25px;">
 	<div class="top-button">
-		<img src="./img/viewers.png" style="height: 30px; margin-right: 5px;">
+		<img src="../img/viewers.png" style="height: 30px; margin-right: 5px;">
 		<div id="views" style="color: white;">203</div>
 	</div>
 	
@@ -279,7 +279,7 @@ body {
 <div class="card" id="card" style="display: none">
   <div class="question" id="question">What song do you want to hear next?</div>
   <div class="option" id="option_1">
-  	<img class="option_img" src="./img/gaga.png" alt="Physical Album Art">
+  	<img class="option_img" src="../img/gaga.png" alt="Physical Album Art">
   	<div class="option_text">
   		<div style="font-weight: 600;">Stupid Love</div>
   		<div style="opacity: 80;">Lady Gaga</div>
@@ -288,7 +288,7 @@ body {
   </div>
 
   <div class="option" id="option_2">
-  	<img class="option_img" src="./img/ed.png" alt="Physical Album Art">
+  	<img class="option_img" src="../img/ed.png" alt="Physical Album Art">
   	<div class="option_text">
   		<div style="font-weight: 600;">Shape of You</div>
   		<div style="opacity: 80;">Ed Sheeran</div>
@@ -297,7 +297,7 @@ body {
   </div>
 
   <div class="option" id="option_3">
-  	<img class="option_img" src="./img/physical.jpg" alt="Physical Album Art">
+  	<img class="option_img" src="../img/physical.jpg" alt="Physical Album Art">
   	<div class="option_text">
   		<div style="font-weight: 600;">Physical</div>
   		<div style="opacity: 80;">Dua Lipa</div>
@@ -433,7 +433,7 @@ function startTimer(duration, display) {
 
 /* Like */
 function like(){
-	document.getElementById('heart').src="./img/like2.png";
+	document.getElementById('heart').src="../img/like2.png";
 	document.getElementById('likes').innerHTML = parseInt(document.getElementById('likes').innerHTML,10)+1;
 	showHearts();
 	setTimeout(showHearts,1000);
@@ -443,7 +443,7 @@ function like(){
 
 function showHearts(){
 	floating({
-	    content: '<img src="./img/heart.svg">',
+	    content: '<img src="../img/heart.svg">',
 	    number: 3,
 	    duration: 3,
 	    repeat: 1,
@@ -452,7 +452,7 @@ function showHearts(){
 }
 
 function restoreLike(){
-	document.getElementById('heart').src="./img/like.png";
+	document.getElementById('heart').src="../img/like.png";
 }
 /* Increase viewers */
 function addViewers(display) {
