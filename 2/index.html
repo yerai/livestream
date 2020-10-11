@@ -335,6 +335,18 @@ function goToLive(){
 	document.getElementById('bottom-bar').style.display="flex";
 	document.getElementById('top-bar').style.display="flex";
 	setTimeout(start,500);
+	var videos = document.querySelectorAll('.video');
+	if(window.innerHeight > 700){
+		for (var i = 0; i< videos.length; i++){
+			videos[i].style.height = '100%';
+			document.getElementById('card').style.height = '70%';
+		}
+	}else{
+		for (var i = 0; i< videos.length; i++){
+			videos[i].style.width = '100%';
+			document.getElementById('card').style.height = '80%';
+		}
+	}
 }
 
 /* Start Video */
